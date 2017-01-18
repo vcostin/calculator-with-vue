@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.3.0/css/bulma.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <title>Calculator with vue</title>
+</head>
+<body>
+
+<div class="container">
+    <div class="notification">
+        <div id="app">
+            <p>{{ numbers }}</p>
+            <span class="calc-display">{{calcDisplay}}</span>
+            <div class="controls">
+                <calc-button btn-value="1" btn-type="number"></calc-button>
+                <calc-button btn-value="2" btn-type="number"></calc-button>
+                <calc-button btn-value="3" btn-type="number"></calc-button>
+                <calc-button btn-value="4" btn-type="number"></calc-button>
+                <calc-button btn-value="5" btn-type="number"></calc-button>
+                <calc-button btn-value="+" btn-type="operation"></calc-button>
+                <calc-button btn-value="-" btn-type="operation"></calc-button>
+                <calc-button btn-value="=" btn-type="result"></calc-button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="//unpkg.com/vue/dist/vue.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
