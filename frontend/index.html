@@ -14,26 +14,57 @@
 
 <div class="container">
     <div class="notification">
-        <div id="app">
-            <p>{{ numbers }}</p>
-            <span class="calc-display">{{calcDisplay}}</span><br>
-            <span class="calc-result">{{calcResult}}</span>
-            <div class="controls">
-                <calc-button btn-value="1" btn-type="number"></calc-button>
-                <calc-button btn-value="2" btn-type="number"></calc-button>
-                <calc-button btn-value="3" btn-type="number"></calc-button>
-                <calc-button btn-value="4" btn-type="number"></calc-button>
-                <calc-button btn-value="5" btn-type="number"></calc-button>
-                <calc-button btn-value="+" btn-type="operation"></calc-button>
-                <calc-button btn-value="-" btn-type="operation"></calc-button>
-                <calc-button btn-value="=" btn-type="result"></calc-button>
+
+    </div>
+</div>
+
+<div class="container">
+    <div class="columns">
+        <div class="column">
+        </div>
+        <div class="column is-one-thirds">
+            <div class="notification box">
+                <div id="app">
+                    <span class="calc-result">{{calcResult}}</span><br>
+                    <span class="calc-display">{{calcDisplay}}</span>
+                    <div class="controls">
+                        <p class="control">
+                            <calc-button btn-value="0" btn-type="number"></calc-button>
+                            <calc-button btn-value="1" btn-type="number"></calc-button>
+                            <calc-button btn-value="2" btn-type="number"></calc-button>
+                            <calc-button btn-value="3" btn-type="number"></calc-button>
+                        </p>
+                        <p class="control">
+                            <calc-button btn-value="4" btn-type="number"></calc-button>
+                            <calc-button btn-value="5" btn-type="number"></calc-button>
+                            <calc-button btn-value="6" btn-type="number"></calc-button>
+                            <calc-button btn-value="7" btn-type="number"></calc-button>
+                        </p>
+                        <p class="control">
+                            <calc-button btn-value="8" btn-type="number"></calc-button>
+                            <calc-button btn-value="9" btn-type="number"></calc-button>
+                        </p>
+                        <p class="control">
+                            <calc-button btn-value="+" btn-type="operation"></calc-button>
+                            <calc-button btn-value="-" btn-type="operation"></calc-button>
+                            <calc-button btn-value="*" btn-type="operation"></calc-button>
+                            <calc-button btn-value="/" btn-type="operation"></calc-button>
+                            <calc-button btn-value="=" btn-type="result"></calc-button>
+                        </p>
+
+                    </div>
+                </div>
             </div>
+        </div>
+
+        <div class="column">
+
         </div>
     </div>
 </div>
 
-
 <script src="//unpkg.com/vue/dist/vue.js"></script>
+<script src="js/calculatorCore.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>

@@ -1,25 +1,27 @@
 'use strict';
 
-const calculatorData = {
-  inputs: ['0'],
-  operations: ['-', '+', '*', '/'],
-  result: 0
-};
+const calculator = new CalculatorCore(['']);
 
 Vue.component('calc-button', {
   props: ['btnValue', 'btnType'],
-  template: `<button @click="inputOperation">{{btnValue}}</button>`,
+  template: `<a @click="inputOperation" 
+                    v-bind:class="{
+                    'button': true,
+                    'is-primary':btnType === 'number',
+                    'is-danger':btnType === 'operation'
+                    }"
+                    >{{btnValue}}</a>`,
   data: () => {
     return {
-      calculatorData
+      calculator
     }
   },
   methods: {
     inputOperation: function () {
 
-      const calcInputs = this.calculatorData.inputs;
-      const calcOperations = this.calculatorData.operations;
-      let latestValue = calcInputs[calcInputs.length - 1];
+      const calcInputs = this.calculator.getInputs();
+      const calcOperations = this.calculator.getOperations();
+      const latestValue = calcInputs[calcInputs.length - 1];
 
       if (
         calcOperations.indexOf(latestValue) !== -1 &&
@@ -31,16 +33,16 @@ Vue.component('calc-button', {
       switch (this.btnType) {
         case 'number':
           if (calcOperations.indexOf(latestValue) !== -1) {
-            calcInputs.push('')
+            this.calculator.addInputs('');
           }
           calcInputs.splice(calcInputs.length - 1, 1, calcInputs[calcInputs.length - 1] + this.btnValue);
-
+          this.calculator.setInputs(calcInputs);
           break;
         case 'operation':
           if (calcInputs[0] === '') {
             return;
           }
-          calcInputs.push(this.btnValue);
+          this.calculator.addInputs(this.btnValue);
           break;
         case 'result':
           return;
@@ -57,21 +59,15 @@ Vue.component('calc-button', {
 new Vue({
   el: '#app',
   data: {
-    numbers: calculatorData.inputs
+    calculator
   },
   watch: {},
   computed: {
     calcDisplay: function () {
-      return this.numbers.join('');
+      return calculator.getInputs().join('');
     },
     calcResult: function () {
-      return this.numbers.reduce((previous, curent)=>{
-        console.log(previous, curent);
-        if(isNaN(curent)){
-          return previous;
-        }
-        return previous + Number(curent);
-      }, 0);
+      return calculator.calculate();
     }
   }
 });
