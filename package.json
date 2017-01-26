@@ -1,0 +1,42 @@
+{
+  "name": "calculator-with-vue",
+  "version": "1.0.0",
+  "description": "Calculator implimentation with Vue.js",
+  "main": "index.js",
+  "dependencies": {
+    "ava": "^0.17.0"
+  },
+  "devDependencies": {
+    "ava": "^0.17.0"
+  },
+  "scripts": {
+    "test": "ava"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vcostin/calculator-with-vue.git"
+  },
+  "keywords": [
+    "vue",
+    "js",
+    "calculator"
+  ],
+  "author": "vcostin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vcostin/calculator-with-vue/issues"
+  },
+  "homepage": "https://github.com/vcostin/calculator-with-vue#readme",
+  "ava": {
+    "files": [
+      "tests/**/*.test.js"
+    ],
+    "concurrency": 5,
+    "failFast": true,
+    "tap": true,
+    "powerAssert": false,
+    "require": [
+      "babel-register"
+    ]
+  }
+}

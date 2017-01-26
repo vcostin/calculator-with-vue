@@ -1,9 +1,9 @@
 'use strict';
 
 const calculatorData = {
-  inputs: [''],
+  inputs: ['0'],
   operations: ['-', '+', '*', '/'],
-  chunky: []
+  result: 0
 };
 
 Vue.component('calc-button', {
@@ -37,10 +37,13 @@ Vue.component('calc-button', {
 
           break;
         case 'operation':
-          if(calcInputs[0] === ''){
+          if (calcInputs[0] === '') {
             return;
           }
           calcInputs.push(this.btnValue);
+          break;
+        case 'result':
+          return;
           break;
       }
     }
@@ -60,6 +63,15 @@ new Vue({
   computed: {
     calcDisplay: function () {
       return this.numbers.join('');
+    },
+    calcResult: function () {
+      return this.numbers.reduce((previous, curent)=>{
+        console.log(previous, curent);
+        if(isNaN(curent)){
+          return previous;
+        }
+        return previous + Number(curent);
+      }, 0);
     }
   }
 });
