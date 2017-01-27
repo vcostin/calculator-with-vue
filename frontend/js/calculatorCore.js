@@ -9,11 +9,11 @@ class CalculatorCore {
     this.roundNumberBy = round;
   }
 
-  getOperations(){
+  getOperations() {
     return this.operations;
   }
 
-  getInputs(){
+  getInputs() {
     return this.inputs;
   }
 
@@ -58,6 +58,7 @@ class CalculatorCore {
   }
 
   calculate() {
+    this.setNextOperation(null);
     return this.getInputs().reduce((prev, curr) => {
       if (isNaN(curr)) {
         this.setNextOperation(curr);

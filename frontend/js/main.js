@@ -1,6 +1,7 @@
 'use strict';
 
 const calculator = new CalculatorCore(['']);
+const Events = new Vue({});
 
 Vue.component('calc-button', {
   props: ['btnValue', 'btnType'],
@@ -45,7 +46,11 @@ Vue.component('calc-button', {
           this.calculator.addInputs(this.btnValue);
           break;
         case 'result':
-          return;
+          Events.$emit('showResult');
+          break;
+        case 'reset':
+          this.calculator.setInputs(['']);
+          Events.$emit('showResult');
           break;
       }
     }
@@ -59,15 +64,23 @@ Vue.component('calc-button', {
 new Vue({
   el: '#app',
   data: {
-    calculator
+    calculator,
+    result: 0
   },
   watch: {},
+  mounted() {
+    Events.$on('showResult', () => {
+      this.result = calculator.calculate();
+    });
+  },
+  methods: {
+
+  },
   computed: {
     calcDisplay: function () {
-      return calculator.getInputs().join('');
-    },
-    calcResult: function () {
-      return calculator.calculate();
+      const computed = calculator.getInputs().join('');
+      return (computed === '')?0:computed;
     }
+
   }
 });

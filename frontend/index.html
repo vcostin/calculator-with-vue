@@ -25,7 +25,7 @@
         <div class="column is-one-thirds">
             <div class="notification box">
                 <div id="app">
-                    <span class="calc-result">{{calcResult}}</span><br>
+                    <span class="calc-result">{{result}}</span><br>
                     <span class="calc-display">{{calcDisplay}}</span>
                     <div class="controls">
                         <p class="control">
@@ -43,6 +43,7 @@
                         <p class="control">
                             <calc-button btn-value="8" btn-type="number"></calc-button>
                             <calc-button btn-value="9" btn-type="number"></calc-button>
+                            <calc-button btn-value="AC" btn-type="reset"></calc-button>
                         </p>
                         <p class="control">
                             <calc-button btn-value="+" btn-type="operation"></calc-button>
