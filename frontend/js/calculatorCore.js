@@ -17,13 +17,39 @@ class CalculatorCore {
     return this.inputs;
   }
 
-  setInputs(inputs = []) {
+  setInputs(inputs = ['']) {
     this.setNextOperation(null);
     this.inputs = inputs;
   }
 
-  addInputs(element) {
+  addInput(element) {
     this.inputs.push(element);
+  }
+
+  // TODO refactor to more readable code
+  addToInputsLogic(input) {
+    const lastIndex = (this.inputs.length - 1);
+
+    if (
+      this.operations.indexOf(this.inputs[lastIndex]) !== -1 &&
+      this.operations.indexOf(input) !== -1
+    ) {
+      return;
+    }
+
+    if (this.operations.indexOf(input) !== -1) {
+      // operation
+      if (this.inputs[0] === '') {
+        return;
+      }
+      this.addInput(input);
+    } else if (this.operations.indexOf(this.inputs[lastIndex]) !== -1) {
+      // first digit after operation
+      this.addInput(input);
+    } else {
+      // digits
+      this.inputs.splice(lastIndex, 1, this.inputs[lastIndex] + input);
+    }
   }
 
   getNextOperation() {

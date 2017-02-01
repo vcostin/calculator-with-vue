@@ -19,37 +19,16 @@ Vue.component('calc-button', {
   },
   methods: {
     inputOperation: function () {
-
-      const calcInputs = this.calculator.getInputs();
-      const calcOperations = this.calculator.getOperations();
-      const latestValue = calcInputs[calcInputs.length - 1];
-
-      if (
-        calcOperations.indexOf(latestValue) !== -1 &&
-        calcOperations.indexOf(this.btnValue) !== -1
-      ) {
-        return;
-      }
-
       switch (this.btnType) {
         case 'number':
-          if (calcOperations.indexOf(latestValue) !== -1) {
-            this.calculator.addInputs('');
-          }
-          calcInputs.splice(calcInputs.length - 1, 1, calcInputs[calcInputs.length - 1] + this.btnValue);
-          this.calculator.setInputs(calcInputs);
-          break;
         case 'operation':
-          if (calcInputs[0] === '') {
-            return;
-          }
-          this.calculator.addInputs(this.btnValue);
+          this.calculator.addToInputsLogic(this.btnValue);
           break;
         case 'result':
           Events.$emit('showResult');
           break;
         case 'reset':
-          this.calculator.setInputs(['']);
+          this.calculator.setInputs();
           Events.$emit('showResult');
           break;
       }
@@ -73,13 +52,11 @@ new Vue({
       this.result = calculator.calculate();
     });
   },
-  methods: {
-
-  },
+  methods: {},
   computed: {
     calcDisplay: function () {
       const computed = calculator.getInputs().join('');
-      return (computed === '')?0:computed;
+      return (computed === '') ? 0 : computed;
     }
 
   }
