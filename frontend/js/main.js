@@ -1,5 +1,3 @@
-'use strict';
-
 const calculator = new CalculatorCore(['']);
 const Events = new Vue({});
 
@@ -12,13 +10,11 @@ Vue.component('calc-button', {
                     'is-danger':btnType === 'operation'
                     }"
                     >{{btnValue}}</a>`,
-  data: () => {
-    return {
-      calculator
-    }
-  },
+  data: () => ({
+    calculator,
+  }),
   methods: {
-    inputOperation: function () {
+    inputOperation() {
       switch (this.btnType) {
         case 'number':
         case 'operation':
@@ -31,20 +27,22 @@ Vue.component('calc-button', {
           this.calculator.setInputs();
           Events.$emit('showResult');
           break;
+        default:
+          break;
       }
-    }
-  }
+    },
+  },
 });
 
-//number
-//operation
-//action
+// number
+// operation
+// action
 
 new Vue({
   el: '#app',
   data: {
     calculator,
-    result: 0
+    result: 0,
   },
   watch: {},
   mounted() {
@@ -54,10 +52,10 @@ new Vue({
   },
   methods: {},
   computed: {
-    calcDisplay: function () {
+    calcDisplay() {
       const computed = calculator.getInputs().join('');
       return (computed === '') ? 0 : computed;
-    }
+    },
 
-  }
+  },
 });

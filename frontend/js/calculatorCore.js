@@ -1,5 +1,3 @@
-'use strict';
-
 class CalculatorCore {
 
   constructor(inputs = [], operations = ['+', '-', '*', '/'], round = 9, nextOperation = null) {
@@ -27,9 +25,11 @@ class CalculatorCore {
   }
 
   // TODO refactor to more readable code
+  // TODO add fload imput support
   addToInputsLogic(input) {
     const lastIndex = (this.inputs.length - 1);
 
+    // you can't add operation before digit
     if (
       this.operations.indexOf(this.inputs[lastIndex]) !== -1 &&
       this.operations.indexOf(input) !== -1
@@ -48,8 +48,13 @@ class CalculatorCore {
       this.addInput(input);
     } else {
       // digits
-      this.inputs.splice(lastIndex, 1, this.inputs[lastIndex] + input);
+      const concatDigit = this.roundUpNumber(this.inputs[lastIndex] + input).toString();
+      this.inputs.splice(lastIndex, 1, concatDigit);
     }
+  }
+
+  roundUpNumber(number) {
+    return Number(`${Math.round(`${number}e${this.roundNumberBy}`)}e-${this.roundNumberBy}`);
   }
 
   getNextOperation() {
@@ -80,7 +85,7 @@ class CalculatorCore {
         answer = Number(operand2);
         break;
     }
-    return Number(Math.round(`${answer}e${this.roundNumberBy}`) + `e-${this.roundNumberBy}`);
+    return this.roundUpNumber(answer);
   }
 
   calculate() {
@@ -96,4 +101,4 @@ class CalculatorCore {
   }
 }
 
-// export default CalculatorCore;
+export default CalculatorCore;
