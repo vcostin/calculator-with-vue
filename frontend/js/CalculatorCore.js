@@ -1,3 +1,5 @@
+import InputFloat from './InputFloat';
+
 class CalculatorCore {
 
   constructor(inputs = [], operations = ['+', '-', '*', '/'], round = 9, nextOperation = null) {
@@ -25,7 +27,6 @@ class CalculatorCore {
   }
 
   // TODO refactor to more readable code
-  // TODO add fload imput support
   addToInputsLogic(input) {
     const lastIndex = (this.inputs.length - 1);
 
@@ -48,8 +49,9 @@ class CalculatorCore {
       this.addInput(input);
     } else {
       // digits
-      const concatDigit = this.roundUpNumber(this.inputs[lastIndex] + input).toString();
-      this.inputs.splice(lastIndex, 1, concatDigit);
+      const floatNumber = new InputFloat(this.inputs[lastIndex]);
+      floatNumber.inputAction(input);
+      this.inputs.splice(lastIndex, 1, floatNumber.getFloat());
     }
   }
 

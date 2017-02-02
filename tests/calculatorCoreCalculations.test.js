@@ -1,5 +1,5 @@
 import test from 'ava';
-import Calculator from '../frontend/js/calculatorCore';
+import Calculator from '../frontend/js/CalculatorCore';
 
 const calc = new Calculator();
 

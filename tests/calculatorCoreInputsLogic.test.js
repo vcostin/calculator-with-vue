@@ -1,5 +1,5 @@
 import test from 'ava';
-import Calculator from '../frontend/js/calculatorCore';
+import Calculator from '../frontend/js/CalculatorCore';
 
 const calc = new Calculator(['']);
 
@@ -88,11 +88,38 @@ test('on 0 and 0 and 1 and + and 0 and 0 and 2 input should get an array of ["1"
 });
 
 
-// // create float numbers
-// test('on 0 and . and 0 and 1 input should get an array of ["0.01"]', (t) => {
-//   calc.addToInputsLogic('0');
+// create float numbers
+test('on 0 and . and 0 and 1 input should get an array of ["0.01"]', (t) => {
+  calc.addToInputsLogic('0');
+  calc.addToInputsLogic('.');
+  calc.addToInputsLogic('0');
+  calc.addToInputsLogic('1');
+  t.is(calc.getInputs()[0], '0.01');
+});
+
+// TODO point alone should create 0
+// test('on . and + and . and 1 input should get an array of ["0", "+", "0.1"]', (t) => {
 //   calc.addToInputsLogic('.');
-//   calc.addToInputsLogic('0');
+//   calc.addToInputsLogic('+');
+//   calc.addToInputsLogic('.');
 //   calc.addToInputsLogic('1');
-//   t.is(calc.getInputs()[0], '0.01');
+//   t.is(calc.getInputs()[0], '0');
+//   t.is(calc.getInputs()[1], '+');
+//   t.is(calc.getInputs()[1], '0.1');
 // });
+
+test('on 0 and . and 0 and 1 and + and . and . and 1 input should get an array of ["0.01", "+" "0.1"]', (t) => {
+  calc.addToInputsLogic('0');
+  calc.addToInputsLogic('.');
+  calc.addToInputsLogic('0');
+  calc.addToInputsLogic('1');
+  calc.addToInputsLogic('+');
+  calc.addToInputsLogic('.');
+  calc.addToInputsLogic('.');
+  calc.addToInputsLogic('1');
+  t.is(calc.getInputs()[0], '0.01');
+  t.is(calc.getInputs()[1], '+');
+  t.is(calc.getInputs()[2], '0.1');
+});
+
+
