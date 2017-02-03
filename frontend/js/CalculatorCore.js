@@ -2,11 +2,16 @@ import InputFloat from './InputFloat';
 
 class CalculatorCore {
 
-  constructor(inputs = [], operations = ['+', '-', '*', '/'], round = 9, nextOperation = null) {
+  constructor(inputs = [],
+    operations = ['+', '-', '*', '/'],
+    round = 9,
+    nextOperation = null,
+    floatNumber = new InputFloat()) {
     this.inputs = inputs;
     this.operations = operations;
     this.nextOperation = nextOperation;
     this.roundNumberBy = round;
+    this.floatNumber = floatNumber;
   }
 
   getOperations() {
@@ -18,6 +23,7 @@ class CalculatorCore {
   }
 
   setInputs(inputs = ['']) {
+    this.floatNumber.resetInput();
     this.setNextOperation(null);
     this.inputs = inputs;
   }
@@ -29,6 +35,7 @@ class CalculatorCore {
   // TODO refactor to more readable code
   addToInputsLogic(input) {
     const lastIndex = (this.inputs.length - 1);
+
 
     // you can't add operation before digit
     if (
@@ -46,12 +53,13 @@ class CalculatorCore {
       this.addInput(input);
     } else if (this.operations.indexOf(this.inputs[lastIndex]) !== -1) {
       // first digit after operation
-      this.addInput(input);
+      this.floatNumber.resetInput();
+      this.floatNumber.inputAction(input);
+      this.addInput(this.floatNumber.getFloat());
     } else {
       // digits
-      const floatNumber = new InputFloat(this.inputs[lastIndex]);
-      floatNumber.inputAction(input);
-      this.inputs.splice(lastIndex, 1, floatNumber.getFloat());
+      this.floatNumber.inputAction(input);
+      this.inputs.splice(lastIndex, 1, this.floatNumber.getFloat());
     }
   }
 

@@ -12,10 +12,6 @@ class InputFloat {
       this.floatStringCompose = input;
       return;
     }
-    if (this.floatStringCompose === '.') {
-      this.floatStringCompose = '0.';
-      return;
-    }
     if (this.isFloatWithThePoint() && input === '.') {
       return;
     }
@@ -32,6 +28,16 @@ class InputFloat {
   }
 
   getFloat() {
+    const pattern = /\.\s*$/;
+
+    if (this.floatStringCompose === '.') {
+      this.floatStringCompose = '0.';
+    }
+
+    if (pattern.test(this.floatStringCompose)) {
+      return this.floatStringCompose.replace(pattern, '');
+    }
+
     return this.floatStringCompose;
   }
 

@@ -61,16 +61,16 @@ test('on input 5 and 5 and . and . and 5 and 5 should return 55.55', (t) => {
 });
 
 
-// TODO deal with hanging dot
-// test('on input . should return 0', (t) => {
-//   inputFloat.inputAction('.');
-//
-//   t.is(inputFloat.getFloat(), '0');
-// });
+// hanging dot test
+test('on input . should return 0', (t) => {
+  inputFloat.inputAction('.');
 
-// test('on input 5 and . should return 5', (t) => {
-//   inputFloat.inputAction('5');
-//   inputFloat.inputAction('.');
-//
-//   t.is(inputFloat.getFloat(), '5');
-// });
+  t.is(inputFloat.getFloat(), '0');
+});
+
+test('on input 5 and . should return 5', (t) => {
+  inputFloat.inputAction('5');
+  inputFloat.inputAction('.');
+
+  t.is(inputFloat.getFloat(), '5');
+});
