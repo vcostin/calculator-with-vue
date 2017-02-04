@@ -1,72 +1,115 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.3.0/css/bulma.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/main.css">
-    <title>Calculator with vue</title>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.3.0/css/bulma.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/main.css">
+  <title>Calculator with vue</title>
 </head>
 <body>
+<div id="app" class="app-background">
 
-<div class="container">
-    <div class="notification">
-
-    </div>
-</div>
-
-<div class="container">
+  <div class="container">
     <div class="columns">
-        <div class="column">
-        </div>
-        <div class="column is-one-thirds">
-            <div class="notification box">
-                <div id="app">
-                    <span class="calc-result">{{result}}</span><br>
-                    <span class="calc-display">{{calcDisplay}}</span>
-                    <div class="controls">
-                        <p class="control">
-                            <calc-button btn-value="0" btn-type="number"></calc-button>
-                            <calc-button btn-value="1" btn-type="number"></calc-button>
-                            <calc-button btn-value="2" btn-type="number"></calc-button>
-                            <calc-button btn-value="3" btn-type="number"></calc-button>
-                        </p>
-                        <p class="control">
-                            <calc-button btn-value="4" btn-type="number"></calc-button>
-                            <calc-button btn-value="5" btn-type="number"></calc-button>
-                            <calc-button btn-value="6" btn-type="number"></calc-button>
-                            <calc-button btn-value="7" btn-type="number"></calc-button>
-                        </p>
-                        <p class="control">
-                            <calc-button btn-value="8" btn-type="number"></calc-button>
-                            <calc-button btn-value="9" btn-type="number"></calc-button>
-                            <calc-button btn-value="." btn-type="number"></calc-button>
-                            <calc-button btn-value="AC" btn-type="reset"></calc-button>
-                        </p>
-                        <p class="control">
-                            <calc-button btn-value="+" btn-type="operation"></calc-button>
-                            <calc-button btn-value="-" btn-type="operation"></calc-button>
-                            <calc-button btn-value="*" btn-type="operation"></calc-button>
-                            <calc-button btn-value="/" btn-type="operation"></calc-button>
-                            <calc-button btn-value="=" btn-type="result"></calc-button>
-                        </p>
+      <div class="column">
 
+      </div>
+      <div class="column">
+        <div class="wrapper">
+
+          <div class="hero is-medium app-background">
+            <div class="hero-body">
+              <div class="notification box">
+
+                <div class="tile is-ancestor">
+                  <div class="tile is-horizontal is-12 is-parent">
+                    <div class="tile is-vertical has-text-right">
+                      <span class="tile is-child calc-result title">{{result}}</span><br>
+                      <span class="tile is-child calc-display subtitle">{{calcDisplay}}</span>
                     </div>
+                  </div>
                 </div>
+
+                <div class="tile is-ancestor">
+
+
+                  <div class="tile is-6 is-vertical">
+                    <div class="tile">
+                      <div class="tile is-vertical is-parent">
+                        <calc-button class="tile is-child box" btn-value="AC" btn-type="reset"></calc-button>
+                        <calc-button class="tile is-child box" btn-value="7" btn-type="number"></calc-button>
+                        <calc-button class="tile is-child box" btn-value="4" btn-type="number"></calc-button>
+                        <calc-button class="tile is-child box" btn-value="1" btn-type="number"></calc-button>
+                      </div>
+                      <div class="tile is-vertical is-parent">
+                        <calc-button class="tile is-child is-disabled box" btn-value="C" btn-type="reset"></calc-button>
+                        <calc-button class="tile is-child box" btn-value="8" btn-type="number"></calc-button>
+                        <calc-button class="tile is-child box" btn-value="5" btn-type="number"></calc-button>
+                        <calc-button class="tile is-child box" btn-value="2" btn-type="number"></calc-button>
+                      </div>
+                    </div>
+                    <div class="tile is-parent">
+                      <calc-button class="tile is-child box" btn-value="0" btn-type="number"></calc-button>
+                    </div>
+                  </div>
+                  <div class="tile is-6 is-vertical">
+                    <div class="tile">
+                      <div class="tile is-parent is-vertical">
+                        <calc-button class="tile is-child box" btn-value="/" btn-type="operation"></calc-button>
+                        <calc-button class="tile is-child box" btn-value="9" btn-type="number"></calc-button>
+                        <calc-button class="tile is-child box" btn-value="6" btn-type="number"></calc-button>
+                      </div>
+                      <div class="tile is-parent is-vertical">
+                        <calc-button class="tile is-child box" btn-value="*" btn-type="operation"></calc-button>
+                        <calc-button class="tile is-child box" btn-value="-" btn-type="operation"></calc-button>
+                        <calc-button class="tile is-child box" btn-value="+" btn-type="operation"></calc-button>
+                      </div>
+                    </div>
+                    <div class="tile">
+                      <div class="tile is-parent is-vertical">
+                        <calc-button class="tile is-child box" btn-value="3" btn-type="number"></calc-button>
+                        <calc-button class="tile is-child box" btn-value="." btn-type="number"></calc-button>
+                      </div>
+                      <div class="tile is-parent is-vertical">
+                        <calc-button class="tile is-child box" btn-value="=" btn-type="result"></calc-button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
+
+          </div>
         </div>
 
-        <div class="column">
+      </div>
+      <div class="column">
 
-        </div>
+      </div>
     </div>
+  </div>
 </div>
-
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <p>
+        <strong>Calculator</strong> by <a href="https://www.freecodecamp.com/vcostin">vcostin</a>. The source code is
+        licensed
+        <a href="http://opensource.org/licenses/mit-license.php">MIT</a>.
+      </p>
+      <p>
+        <a class="icon" href="https://github.com/vcostin/calculator-with-vue">
+          <i class="fa fa-github"></i>
+        </a>
+      </p>
+    </div>
+  </div>
+</footer>
 <script src="//unpkg.com/vue/dist/vue.js"></script>
-<script src="js/CalculatorCore.js"></script>
-<script src="js/main.js"></script>
+<script src="js/index.js"></script>
 </body>
 </html>
